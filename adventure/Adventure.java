@@ -1,6 +1,7 @@
 package adventure;
 
 import java.util.Scanner;
+import java.io.Filereader;
 
 public class Adventure {
 
@@ -8,9 +9,16 @@ public class Adventure {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		int maxX = 10;
+		int maxY = 10;
 		int x = 0;
 		int y = 0;
+		String mapFile = "map.csv";
+		MapBlock[][] map = new MapBlock[maxX][maxY];
+		
+		init(mapFile);
+		
+		
 		String choice = "";
 		
 		System.out.print("Currently at: " + x + ":" + y + "\nCommand> ");
@@ -55,6 +63,11 @@ public class Adventure {
 			choice = s.nextLine();
 		};
 		System.out.println("You are dead. Enjoy the afterlife");
+	}
+	
+	public static void init(String mapFile)
+	{
+		FileReader fr = new FileReader(mapFile);
 	}
 
 }
