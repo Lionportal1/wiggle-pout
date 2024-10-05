@@ -1,56 +1,77 @@
-0,0, Tianlong Temple[],0,0,0,0
-1,0, Misty Forest[],0,1,0,0
-2,0, Misty Forest[],0,0,1,0
-8,0, Battle Plain[],0,0,0,1
-9,0, Battle Plain[],0,0,0,0
-0,1, Dragon Village[],1,0,1,0
-1,1, Misty Forest[],1,0,0,1
-2,1, Misty Forest[],0,1,1,0
-7,1, Battle Plain[],1,0,0,1
-8,1, Battle Plain[],0,0,0,0
-9,1, Battle Plain[],0,0,0,0
-0,2, Dragon Village[],0,0,1,0
-1,2, Bamboo Grove[],0,1,0,1
-2,2, Bamboo Grove[],1,0,1,0
-3,2, Tianlu Temple[],1,0,1,1
-7,2, Battle Plain[],0,1,1,1
-8,2, Song Training Ground[],1,0,1,0
-9,2, Song Training Ground[],0,0,1,0
-0,3, Verdant Forest[],0,0,0,0
-1,3, Verdant Forest[],1,1,0,0
-2,3, Verdant Forest[],0,0,0,0
-3,3, Verdant Forest[],0,0,1,0
-6,3, Battle Plain[],1,0,1,1
-7,3, Song Clan[],1,0,0,1
-8,3, Song Training Ground[],0,1,0,0
-9,3, Song Training Ground[],0,1,1,0
-0,4, Verdant Forest[],0,0,1,0
-1,4, Hidden Cave[],1,0,1,1
-2,4, Verdant Forest[],0,0,0,1
-3,4, Verdant Forest[],0,0,0,0
-4,4, Secret Cave[],1,1,0,0
-5,4, Secret Cave[],1,1,0,0
-6,4, Battle Plain[],0,0,1,0
-7,4, Song Clan Estate Entrance[],0,0,1,1
-8,4, Battle Plain[],1,0,0,1
-9,4, Battle Plain[],1,0,0,0
-0,5, Verdant Forest[],0,0,1,0
-1,5, Hidden Cave[],0,0,1,1
-2,5, Verdant Forest[],0,0,0,1
-3,5, Verdant Forest[],0,0,1,0
-6,5, Verdant Forest[],0,1,0,1
-7,5, Battle Plain[],0,0,0,0
-8,5, Battle Plain[],0,0,0,0
-9,5, Battle Plain[],0,0,0,0
-0,6, Verdant Forest[],0,0,0,0
-1,6, Verdant Forest[],0,0,0,0
-2,6, Verdant Forest[],0,0,0,0
-3,6, Verdant Forest[],0,1,0,0
-4,6, Verdant Forest[],1,0,1,0
-7,6, Battle Plain[],0,1,0,1
-8,6, Jade Monastery[],0,1,0,0
-9,6, Jade Monastery[],0,0,0,0
-0,7, Verdant Forest[],0,0,0,0
-1,7, Verdant Village[],0,0,0,0
-2,7, Verdant Village[],0,0,0,0
-3,7, Verdant Village[],1,1,1,0
+0,0,Tianlong Temple,A sacred place where your journey begins monks speak of a mysterious object,0,0,0,0
+1,0,Misty Forest,A thick forest filled with wildlife and hidden treasures,0,1,0,0
+2,0,Misty Forest,A dark misty forest where creatures roam and secrets hide,0,0,1,0
+8,0,Battle Plain,An open field for combat and training to hone your skills,0,0,0,1
+9,0,Battle Plain,A battlefield where warriors clash to gain experience,0,0,1,0
+0,1,Dragon Village,A small village where merchants gather and villagers share stories.,1,0,1,0
+1,1,Misty Forest,A dense forest where treasures can be found and creatures lurk,1,0,0,1
+2,1,Misty Forest,A misty area where adventurers can find hidden paths,0,1,1,0
+7,1,Battle Plain,A well-worn battlefield perfect for testing your strength,1,0,0,1
+8,1,Battle Plain,A wide battle plain where enemies roam,0,0,0,0
+9,1,Battle Plain,A field for combat where you can earn valuable experience,0,0,1,0
+0,2,Dragon Village,This part of Dragon Village is bustling with activity. Merchants set up stalls selling goods to adventurers looking for supplies.,0,0,1,0
+1,2,Bamboo Grove,A serene bamboo forest where secrets may be found,0,1,0,1
+2,2,Bamboo Grove,A quiet grove full of towering bamboo and hidden paths,1,0,1,0
+3,2,Tianlu Temple,An ancient temple full of mystery and forgotten knowledge,1,0,1,1
+7,2,Battle Plain,A battleground for skilled fighters looking for a challenge,0,1,1,1
+8,2,Song Training Ground,A training ground for warriors of the Song Clan,1,0,1,0
+9,2,Song Training Ground,A place to train and learn combat skills,0,0,1,0
+0,3,Verdant Forest,A vibrant forest with rare plants and animals to discover,0,0,0,0
+1,3,Verdant Forest,A lush forest with hidden paths and dangerous creatures,1,1,0,0
+2,3,Verdant Forest,A peaceful forest with many secrets waiting to be found,0,0,0,0
+3,3,Verdant Forest,A quiet part of the forest where wildlife thrives,0,0,1,0
+6,3,Battle Plain,A harsh battlefield where only the strongest survive,1,0,1,1
+7,3,Song Clan,A fortress and home to the powerful Song Clan,1,0,0,1
+8,3,Song Training Ground,A place for advanced combat training,0,1,0,0
+9,3,Song Training Ground,A well-kept training ground for warriors,0,1,1,0
+0,4,Verdant Forest,A beautiful forest filled with life and mystery,0,0,1,0
+1,4,Hidden Cave,A dark cave that holds secrets of the past,1,0,1,1
+2,4,Verdant Forest,A peaceful area full of rare plants and hidden paths,0,0,0,1
+3,4,Verdant Forest,A secluded spot in the forest with hidden dangers,0,0,0,0
+4,4,Secret Cave,A cave used by a secret society filled with ancient relics,1,1,0,0
+5,4,Secret Cave,An ancient cave full of powerful artifacts,1,1,0,0
+6,4,Battle Plain,A battleground where many warriors come to train,0,0,1,0
+7,4,Song Clan Estate Entrance,The heavily guarded entrance to the Song Clan Estate,0,0,1,1
+8,4,Battle Plain,A large battle plain with fierce enemies,1,0,0,1
+9,4,Battle Plain,A field for battle where warriors gain experience,1,0,1,0
+0,5,Verdant Forest,A vibrant forest with animals and hidden treasures,0,0,1,0
+1,5,Hidden Cave,A hidden cave rumored to hold ancient artifacts,0,0,1,1
+2,5,Verdant Forest,A secluded forest path filled with rare plants,0,0,0,1
+3,5,Verdant Forest,A quiet part of the forest where danger lurks,0,0,1,0
+6,5,Verdant Forest,A peaceful forest filled with life and mystery,0,1,0,1
+7,5,Battle Plain,A training ground for those seeking to test their strength,0,0,0,0
+8,5,Battle Plain,A battlefield where strong warriors clash,0,0,0,0
+9,5,Battle Plain,A wide battle plain full of challenges,0,0,1,0
+0,6,Verdant Forest,A lush green forest full of life and secrets,0,0,0,0
+1,6,Verdant Forest,A quiet forest filled with rare creatures,0,0,0,0
+2,6,Verdant Forest,A peaceful forest path where adventures await,0,0,0,0
+3,6,Verdant Forest,A secluded forest with hidden paths,0,1,0,0
+4,6,Verdant Forest,A dense forest full of secrets and rare plants,1,0,1,0
+7,6,Battle Plain,A battlefield for fierce combat and experience,0,1,0,1
+8,6,Jade Monastery,A calm monastery where warriors seek guidance,0,1,0,0
+9,6,Jade Monastery,A place of learning and spiritual growth for warriors,0,0,1,0
+0,7,Verdant Forest,A quiet corner of the forest filled with wildlife,0,0,0,0
+1,7,Verdant Village,A peaceful village where goods are traded,0,0,0,0
+2,7,Verdant Village,A small village known for its kind people and traders,0,0,0,0
+3,7,Verdant Village,The center of Verdant Village where villagers gather to trade and share news. A lively hub full of friendly faces and colorful stalls.,1,1,1,0
+4,7,Verdant Forest,A dense forest full of hidden treasures and danger,0,0,0,1
+5,7,Verdant Forest,A peaceful spot in the forest where animals roam freely,1,0,0,0
+6,7,Jade Cliff Pass,A dangerous mountain pass with narrow paths,1,1,0,0
+7,7,Jade Cliff Pass,A treacherous pass where only the brave venture,1,1,0,0
+8,7,Jade Cliff Pass,A narrow pass through the cliffs full of danger,1,1,0,0
+9,7,Battle Plains,A battlefield where only the strongest can survive,0,0,1,0
+0,8,Verdant Forest,A thick forest with hidden paths and dangers,1,0,0,0
+1,8,Verdant Forest,A secluded part of the forest rich with wildlife,0,1,0,0
+2,8,Verdant Forest,A dense forest full of rare plants and hidden paths,0,1,1,0
+3,8,Verdant Forest,A quiet section of the forest with many secrets,1,0,0,1
+4,8,Verdant Forest,A beautiful but dangerous forest path,0,0,0,0
+5,8,Verdant Forest,A forest full of hidden paths and dangers,0,0,1,0
+9,8,Battle Plain,A fierce battleground where warriors clash,0,0,1,1
+0,9,Bamboo Grove,A quiet grove full of towering bamboo,1,1,0,0
+1,9,Bamboo Grove,A serene bamboo forest where secrets are found,1,1,0,0
+2,9,Bamboo Grove,A peaceful bamboo grove perfect for exploration,1,1,0,0
+3,9,Bamboo Grove,A quiet area of the bamboo forest with hidden paths,0,1,0,0
+4,9,Verdant Forest,A beautiful forest with hidden treasures,0,0,0,0
+5,9,Verdant Forest,A secluded part of the forest rich in wildlife,0,0,1,0
+8,9,Battle Plain,A field of battle where the strong come to fight,1,0,0,1
+9,9,Battle Plains,A vast battlefield where strength is tested,0,0,1,0
