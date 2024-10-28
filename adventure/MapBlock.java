@@ -7,6 +7,8 @@ public class MapBlock {
 	private byte s = 1;
 	private byte e = 1;
 	private byte w = 1;
+	public int[] itemsHere = new int[25];
+	public int itemCount = 0;
 	
 	public void setTitle(String t)
 	{
@@ -56,5 +58,47 @@ public class MapBlock {
 	{
 		return w;
 	}
+	
+	public boolean isWall(char dir) //'n','s','e','w'
+	{
+		
+		boolean answer = true;
+		
+		switch (dir)
+		{
+		case 'n':
+			if (n == 0)
+			{
+				answer = false;
+			}
+			break;
+		case 's':
+			if (s == 0)
+			{
+				answer = false;
+			}
+			break;
+		case 'e':
+			if (e == 0)
+			{
+				answer = false;
+			}
+			break;
+		case 'w':
+			if (w == 0)
+			{
+				answer = false;
+			}
+			break;
+		}
+		return answer;
+		
+		
+	}
+	
+	
+	
+	
+	
 
 }
