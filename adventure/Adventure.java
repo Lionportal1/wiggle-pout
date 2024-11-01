@@ -13,31 +13,37 @@ public class Adventure {
 		// TODO Auto-generated method stub
 		int maxX = 10;
 		int maxY = 10;
-		int maxItems = 10;
+		int maxItems = 20;
 		//My Start
 		int xstart = 0;
 		int ystart = 0;
 		
-		
-		int xpos = xstart;
-		int ypos = ystart;
 		
 		String mapfile = "map.csv";
 		String itemfile = "items.csv";
 		
 		MapBlock[][] map = new MapBlock[maxX][maxY];
 		Item[] items = new Item[maxItems];
+		Player p = new Player();
+		p.xpos = xstart;
+		p.ypos = ystart;
 		
-		init(mapfile, map);
+		init(mapfile, items, map);
 		init(itemfile, items, map);
 		
 		String choice = "";
 		
-		System.out.println(map[xpos][ypos].getTitle() + "\n" + map[xpos][ypos].getDesc() + "\nCommand>");
-		showItems(items, map, xpos, ypos);
+		System.out.println(map[p.xpos][p.ypos].getTitle() + "\n" + map[p.xpos][p.ypos].getDesc() + "\nCommand>");
+		showItems(map[p.xpos][p.ypos], items);
 		
 		
-		choice = s.nextLine();
+		
+		System.out.print("I'm waiting... >>");
+		String line = s.nextLine();
+		
+		String[] data;
+		data = line.split("",2);
+		choice = data[0];
 		
 		while(!choice.equals("x"))
 		{
@@ -47,52 +53,79 @@ public class Adventure {
 			case "E":
 			case "east":
 			case "East":
-				if(map[xpos][ypos].isWall('e'))
+				if(map[p.xpos][p.ypos].isWall('e'))
 				{
 					System.out.println("There is a wall there, dude. Try Again");
 				}
 				else
 				{
-					xpos++;
+					p.xpos++;
 				}
 				break;
 			case "w":
 			case "W":
 			case "west":
 			case "West":
-				if(map[xpos][ypos].isWall('w'))
+				if(map[p.xpos][p.ypos].isWall('w'))
 				{
 					System.out.println("There is a wall there, dude. Try Again");
 				}
 				else
 				{
-					xpos--;
+					p.xpos--;
 				}
 				break;
 			case "n":
 			case "N":
 			case "north":
 			case "North":
-				if(map[xpos][ypos].isWall('n'))
+				if(map[p.xpos][p.ypos].isWall('n'))
 				{
 					System.out.println("There is a wall there, dude. Try Again");
 				}
 				else
 				{
-					ypos--;
+					p.ypos--;
 				}
 				break;
 			case "s":
 			case "S":
 			case "south":
 			case "South":
-				if(map[xpos][ypos].isWall('s'))
+				if(map[p.xpos][p.ypos].isWall('s'))
 				{
 					System.out.println("There is a wall there, dude. Try Again");
 				}
 				else
 				{
-					ypos++;
+					p.ypos++;
+				}
+				break;
+			case "get":
+			case "Get":
+			case "g":
+			case "G":
+				if(map[p.xpos][p.ypos].itemsCount == 0)
+				{
+					System.out.println("I see nothing...");
+					
+				}
+				else
+				{
+					String stuff = data[1];
+					
+					int itemIdx = find(items, stuff);
+					int itemCheck = findByIndex(itemIdx,p.xpos,p.ypos);
+					
+					if((itemCheck >= 0) && (itemIdx >=0))
+					{
+						pickup(itemIdx);
+						System.out.println("You now have the " + stuff + ".");
+						remove(itemIdx, );
+						
+						
+						
+					}
 				}
 				break;
 			default:
@@ -100,14 +133,35 @@ public class Adventure {
 				break;
 			}
 			
-			System.out.println(xpos + ":" + ypos + "  -   " + map[xpos][ypos].getTitle() + "\n" + map[xpos][ypos].getDesc() + "\nCommand> ");
+			System.out.println(map[p.xpos][p.ypos].getTitle() + "\n" + map[p.xpos][p.ypos].getDesc() + "\nCommand>");
+			showItems(map[p.xpos][p.ypos], items);
 			
 			choice = s.nextLine();
 		};
 		System.out.println("You are dead. Enjoy the afterlife");
 	}
 	
-	private static void showItems(Item[] items, MapBlock[][] map, int xpos, int ypos) {
+	private static void showItems(MapBlock mapBlock, Item[] items)
+	{
+		// TODO Auto-generated method stub
+		
+		for(int i = 0; i < mapBlock.itemCount; i++)
+		{
+			System.out.printf("The is a/an %s here.\n", items[mapBlock.itemsHere[i]].title);
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+	}
+
+	/*private static void showItems(Item[] items, MapBlock[][] map, int xpos, int ypos) {
 		// TODO Auto-generated method stub
 		
 		for(int i = 0; i< map[xpos][ypos].itemCount; i++)
@@ -162,11 +216,11 @@ public class Adventure {
 		}
 		
 		
-	}
+	}*/
 
 	
 	
-	public static void init(String itemFile, Item[] items, MapBlock[][] map)
+	public static void init(String itemfile, Item[] items, MapBlock[][] map)
 	{
 		String splitBy = ",";
 		String line;
@@ -174,19 +228,21 @@ public class Adventure {
 		
 		try
 		{
-			FileReader fr = new FileReader(itemFile);
+			FileReader fr = new FileReader(itemfile);
 			BufferedReader br = new BufferedReader(fr);
 			
-			while((line = br.readLine()) != null);
+			while((line = br.readLine()) != null)
 			{
 				String[] data = line.split(splitBy);
 				int xpos = Integer.parseInt(data[0]);
 				int ypos = Integer.parseInt(data[1]);
 						
 				items[itemCount] = new Item();
+				
 				items[itemCount].title = data[2];
 				items[itemCount].desc = data[3];
 				map[xpos][ypos].itemsHere[map[xpos][ypos].itemCount++] = itemCount;
+				//map[xpos][ypos].itemCount++;
 				
 						
 System.out.println("Item Added: " + items[itemCount].title);
@@ -205,7 +261,7 @@ System.out.println("Item Added: " + items[itemCount].title);
 		}
 		catch (IOException e) {
 			// TODO Auto-generated catch block
-			System.out.println("File not Found:" + itemFile);
+			System.out.println("File not Found:" + itemfile);
 			e.printStackTrace();
 		}
 		
