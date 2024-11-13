@@ -10,5 +10,9 @@ public class Player
 	
 	public int[] items = new int[25];
 	public int itemCount = 0;
+	public void addItemToInventory(int itemIdx) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

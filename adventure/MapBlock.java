@@ -95,6 +95,14 @@ public class MapBlock {
 		
 		
 	}
+	public void removeItem(int itemIdx) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void addItem(int itemCount) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
