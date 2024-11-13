@@ -8,7 +8,7 @@ public class MapBlock {
 	private byte e = 1;
 	private byte w = 1;
 	public int[] itemsHere = new int[20];
-	public int itemCount = 0;
+	public int itemsCount = 0;
 	
 	public void setTitle(String t)
 	{
