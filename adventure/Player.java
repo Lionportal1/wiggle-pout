@@ -7,6 +7,10 @@ public class Player
 	public String title;
 	public String desc;
 	public int moveable;
+	public int combative;
+	public int defense;
+	public int health;
+	public int strength;
 	
 	public int[] items = new int[25];
 	public int itemCount = 0;
