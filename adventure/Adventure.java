@@ -28,9 +28,10 @@ public class Adventure
         Player[] npcs = new Player[maxPlayers]; // Array to store NPCs in the game
 
         init(mapfile, map); // Initializes the map with data from mapfile
-        int itemCount = init(itemfile, items, map); // Initializes items and returns item count
+        
         int playerCount = init(playerfile, npcs); // Initializes NPCs and returns player count
-
+        int itemCount = init(itemfile, items, map, npcs); // Initializes items and returns item count
+       
         Player p = npcs[0]; // Sets the first player in the NPC array as the main player
 
         while(playing) 
@@ -287,7 +288,7 @@ public class Adventure
                                      
                     if((itemCheck >= 0) && (itemIdx >= 0)) 
                     {
-                        pickup(itemIdx, p); // Picks up the item
+                        pickup(itemIdx, p, items); // Picks up the item
                         System.out.println("You now have the " + stuff + ".");
                         remove(itemIdx, map[p.xpos][p.ypos]); // Removes item from map
                     } 
@@ -314,7 +315,7 @@ public class Adventure
                     {
                         place(itemIdx, map[p.xpos][p.ypos]); // drops up the item
                         System.out.println("You dropped the " + stuff + ".");
-                        drop(itemIdx, p); // Removes item from player
+                        drop(itemIdx, p, items); // Removes item from player
                     } 
                     else 
                     {
@@ -324,7 +325,7 @@ public class Adventure
                 }
                 break;
             	case "attack": case "Attack": case "a": case "A": // attack
-                    attack(npcs, playerCount, p);
+                    attack(npcs, playerCount, p, items, map[p.xpos][p.ypos]);
                     break;
             	case "inventory": case "Inventory": case "i": case "I": // Inventory
                     System.out.println("You are carrying: ");
@@ -339,7 +340,7 @@ public class Adventure
         }
     }
     
-    private static void attack(Player[] npcs, int playerCount, Player p) 
+    private static void attack(Player[] npcs, int playerCount, Player p, Item[] items, MapBlock m) 
     {
 		// TODO Auto-generated method stub
     	for(int i = 1; i < playerCount; i++)
@@ -357,7 +358,7 @@ public class Adventure
 						System.out.println(p.title + " hits with " + damage + " damage. Health " + npcs[i].health);
 						if(npcs[i].health <= 0)
 						{
-							kill(npcs[i]);
+							kill(npcs[i], items, m);
 						}
 						
 					}
@@ -377,13 +378,22 @@ public class Adventure
     	
 	}
 
-	private static void kill(Player player) 
+	private static void kill(Player player, Item[] items, MapBlock m) 
 	{
 		// TODO Auto-generated method stub
 		System.out.println(player.title + " is dead");
 		player.title = "Body of " + player.title;
 		player.combative = 0;
 		player.moveable = 0;
+		
+		for(int i = 0; i < player.itemCount; i++)
+		{
+			place(player.items[i],m);
+			drop(player.items[i],player,items);
+			
+			
+		}
+		
 	}
 
 	private static String prompt() {
@@ -396,7 +406,7 @@ public class Adventure
     	return line;
 	}
 
-	private static void drop(int itemIdx, Player p) 
+	private static void drop(int itemIdx, Player p, Item[] items) 
 	{
 		// TODO Auto-generated method stub
 		int index = findByIndex(itemIdx, p);
@@ -406,9 +416,12 @@ public class Adventure
 			p.items[index] = p.items[p.itemCount - 1];
 			p.items[p.itemCount - 1] = -1;
 			p.itemCount--;
-			
+			p.defense -= items[itemIdx].Armour;
+			p.strength -= items[itemIdx].Might;
 			
 		}
+		
+//System.out.println(" Defense = " + p.defense + " \n" + " Strength = " + p.strength);
 	}
 
 	private static void place(int itemIdx, MapBlock mapBlock) 
@@ -459,12 +472,17 @@ public class Adventure
     
     }
 
-    private static void pickup(int itemIdx, Player p) 
+    private static void pickup(int itemIdx, Player p, Item[] items) 
     {
+    	
+  //System.out.println(" Defense = " + p.defense + " \n" + " Strength = " + p.strength);
+    	
         // Adds an item to the player's inventory
     	p.items[p.itemCount++] = itemIdx;
-    
-    
+    	p.defense += items[itemIdx].Armour;
+    	p.strength += items[itemIdx].Might;
+    	
+  //System.out.println(" Defense = " + p.defense + " \n" + " Strength = " + p.strength);
     
     
     
@@ -553,7 +571,7 @@ public class Adventure
 		return npcCount;
 	}
 
-	public static int init(String itemfile, Item[] items, MapBlock[][] map)
+	public static int init(String itemfile, Item[] items, MapBlock[][] map, Player[] npcs)
     {
         // Initializes items from itemfile and places them on the map
         String splitBy = ",";
@@ -571,13 +589,29 @@ public class Adventure
                 
                 items[itemCount] = new Item(); // Creates new item object
                 
-                int xpos = Integer.parseInt(data[0]); // Sets X position of item
-                int ypos = Integer.parseInt(data[1]); // Sets Y position of item
+                int a = Integer.parseInt(data[0]); // Sets X position of item
+                int b = Integer.parseInt(data[1]); // Sets Y position of item
                 
                 items[itemCount].title = data[2]; // Sets title of item
                 items[itemCount].desc = data[3]; // Sets description of item
-                map[xpos][ypos].itemsHere[map[xpos][ypos].itemsCount++] = itemCount; // Adds item to map position
-
+                items[itemCount].Armour = Integer.parseInt(data[4]);
+                items[itemCount].Might = Integer.parseInt(data[5]);
+                
+                System.out.println("Adding " + items[itemCount].title);
+            	
+                
+                if (a >= 0)
+                {
+                	map[a][b].itemsHere[map[a][b].itemsCount++] = itemCount; // Adds item to map position
+                }
+                else
+                {
+                	System.out.println("Adding " + items[itemCount].title + " to player " + b);
+                	pickup(itemCount,npcs[b],items);
+                }
+                
+                
+                
   System.out.println(".." + items[itemCount].title + "..");              
                 
                 itemCount++; // Increments item count
