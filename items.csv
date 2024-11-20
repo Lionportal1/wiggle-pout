@@ -1,8 +1,9 @@
-8,8,Manual of Life and Death,A legendary scroll sought by all.,0,0
-2,4,Mystic Dagger,A light weapon, easy to conceal.,0,5
+0,9,Manual of Life and Death,A legendary scroll sought by all.,0,0
+2,4,Mystic Dagger,A light weapon. Easy to conceal.,0,5
 7,3,Armor of the Phoenix,Radiates warmth and strength.,20,0
-6,6,Poisoned Kunai,A deadly weapon for stealthy attacks.,0,8
+4,4,Poisoned Kunai,A deadly weapon for stealthy attacks.,0,8
 -1,5,Iron Gauntlet,Increases hand-to-hand combat skill.,5,3
-0,0,Basic Iron Sword,The most basic sword available.,0,5
+-1,0,Basic Iron Sword,The most basic sword available.,0,5
 -1,2,Dragon Sword,A blade forged with the essence of fire.,0,10
 -1,3,Golden Shield,Provides immense protection.,15,0
+-1,6,Hat of Power,Gives no benefit. Except Aura.,0,0

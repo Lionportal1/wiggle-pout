@@ -1,6 +1,7 @@
-0,0,Player Character,The protagonist on a quest for the Manual of Life and Death.,1,1,100,20,7,6,10
-2,4,Rival Clan Fighter,A hostile warrior blocking your path.,0,1,100,10,6,5,7
-3,5,Bandit Leader,A ruthless outlaw guarding treasure.,0,1,100,20,8,5,8
-7,3,Wandering Swordsman,A mysterious figure offering a challenge.,0,1,100,25,10,7,9
-8,8,Cave Hermit,A recluse guarding the Manual of Life and Death.,0,1,100,30,9,6,12
-6,6,Rival Clan Scout,A swift warrior from a rival clan.,0,1,100,12,5,8,6
+0,0,Player Character,The protagonist on a quest for the Manual of Life and Death.,1,1,15,100,7,6,10
+2,4,Rival Clan Fighter,A hostile warrior blocking your path.,1,1,10,1,6,5,7
+3,5,Bandit Leader,A ruthless outlaw guarding treasure.,1,1,20,1000,8,5,8
+7,3,Wandering Swordsman,A mysterious figure offering a challenge.,1,1,25,100,10,7,9
+8,8,Cave Hermit,A recluse guarding the Manual of Life and Death.,0,1,30,100,9,6,12
+6,6,Rival Clan Scout,A swift warrior from a rival clan.,0,1,12,100,5,8,6
+0,1,Training Dummy,A training dummy for your enjoyment.,0,1,10,10,10,0,0
