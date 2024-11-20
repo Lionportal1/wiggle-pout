@@ -11,7 +11,7 @@ public class Adventure
     public static Scanner s = new Scanner(System.in); // Creates a Scanner object for reading user input
     
     public static void main(String[] args) 
-    { // Main method that starts the game
+    {
         int maxX = 10; // Maximum X dimension of the map
         int maxY = 10; // Maximum Y dimension of the map
         int maxItems = 20; // Maximum number of items
@@ -20,56 +20,64 @@ public class Adventure
         String mapfile = "map.csv"; // File name for the map data
         String itemfile = "items.csv"; // File name for item data
         String playerfile = "npcs.csv"; // File name for NPC data
+        String winfile = "win.csv"; // File name for win condition
 
-        boolean playing = true; // Game state flag, true means game is running
-        boolean alive = true; //Are you Alive?
-        MapBlock[][] map = new MapBlock[maxX][maxY]; // Initializes a 2D array of MapBlock for the game map
+        boolean playing = true;
+        boolean alive = true;
+
+        MapBlock[][] map = new MapBlock[maxX][maxY]; // Initializes a 2D array of MapBlock
         Item[] items = new Item[maxItems]; // Array to store items in the game
         Player[] npcs = new Player[maxPlayers]; // Array to store NPCs in the game
 
-        init(mapfile, map); // Initializes the map with data from mapfile
-        
-        int playerCount = init(playerfile, npcs); // Initializes NPCs and returns player count
-        int itemCount = init(itemfile, items, map, npcs); // Initializes items and returns item count
-       
+        init(mapfile, map); // Initialize the map
+        int playerCount = init(playerfile, npcs); // Initialize NPCs
+        int itemCount = init(itemfile, items, map, npcs); // Initialize items
+        initWin(winfile); // Initialize the win condition
+
         Player p = npcs[0]; // Sets the first player in the NPC array as the main player
 
-        while(playing) 
-        { // Main game loop
-           if(show(map[p.xpos][p.ypos], items, npcs, playerCount) > 0) 
-           {
-        	   combat(playerCount, npcs, p);
-        	   
-        	   
-        	   
-        	   
-        	   
-        	   
-           }
-        	alive = checkAlive(p);
-        	
-        	
-        	
-        	
-        	
-        	if(alive)
-            {
-            	move(map, items, p, itemCount, npcs, playerCount); // Handles player's movement and actions
-            	moveNpcs(map, npcs, playerCount); // Handles NPC movements
-                 //showNpcs(map); // Displays NPCs present on the map
+        // Main game loop
+        while (playing) {
+            if (show(map[p.xpos][p.ypos], items, npcs, playerCount) > 0) {
+                combat(playerCount, npcs, p);
             }
-        	else
-        	{
-        		playing = false;
-        		System.out.println("You are dead. Enjoy the afterlife"); // Message displayed when the game ends
-        		
-        		
-        		
-        	}
+            alive = checkAlive(p);
+            if (alive) {
+                move(map, items, p, itemCount, npcs, playerCount); // Handle player actions
+                moveNpcs(map, npcs, playerCount); // Handle NPC actions
+            } else {
+                playing = false;
+                System.out.println("You are dead. Enjoy the afterlife.");
+            }
         }
-        
-        System.out.println("Goodbye"); // Message displayed when the game quits
+
+        System.out.println("Goodbye");
     }
+    
+    
+    
+    
+    public static String[] winCondition = new String[4];
+
+    public static void initWin(String winFile) 
+    {
+        String splitBy = ",";
+        String line;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(winFile))) {
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(splitBy);
+                winCondition[0] = data[0]; // xpos
+                winCondition[1] = data[1]; // ypos
+                winCondition[2] = data[2]; // itemIndex
+                winCondition[3] = data[3]; // winMessage
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     private static boolean checkAlive(Player p) 
     {
@@ -212,6 +220,8 @@ public class Adventure
                 npcs[playerCount].defense = Integer.parseInt(data[6]);
                 npcs[playerCount].health = Integer.parseInt(data[7]);
                 npcs[playerCount].strength = Integer.parseInt(data[8]);
+                npcs[playerCount].dexterity = Integer.parseInt(data[9]);
+                npcs[playerCount].intelligence = Integer.parseInt(data[10]);
                 
                 
                 playerCount++; // Increments player count
@@ -334,10 +344,54 @@ public class Adventure
                     	System.out.println(items[p.items[i]].title);
                     }
                     break;
+            	case "?": case "help": case "h": case "H": case "Help":
+            	    System.out.println("Available Commands:");
+            	    System.out.println("e/w/n/s - Move east/west/north/south");
+            	    System.out.println("g [item] - Get an item");
+            	    System.out.println("d [item] - Drop an item");
+            	    System.out.println("a - Attack");
+            	    System.out.println("i - Show inventory");
+            	    System.out.println("steal - Attempt to steal an item from an NPC");
+            	    System.out.println("?/h/help - Show this list");
+            	    break;
+            	case "steal": case "Steal":
+            	    boolean stolen = false;
+            	    for (int i = 1; i < playerCount; i++) {
+            	        if (npcs[i].xpos == p.xpos && npcs[i].ypos == p.ypos) {
+            	            int rollResult = roll(10) + p.dexterity;
+            	            if (rollResult > npcs[i].intelligence && npcs[i].itemCount > 0) {
+            	                int lastItemIdx = npcs[i].items[npcs[i].itemCount - 1];
+            	                pickup(lastItemIdx, p, items);
+            	                drop(lastItemIdx, npcs[i], items);
+            	                System.out.println("You successfully stole " + items[lastItemIdx].title + " from " + npcs[i].title);
+            	                stolen = true;
+            	                break;
+            	            } else {
+            	                System.out.println("Steal attempt failed! " + npcs[i].title + " noticed you.");
+            	            }
+            	        }
+            	    }
+            	    if (!stolen) {
+            	        System.out.println("No one to steal from here.");
+            	    }
+            	    break;
             default:
                 System.out.println("Invalid Command"); // Handles invalid commands
                 break;
         }
+        
+        if (Integer.parseInt(winCondition[0]) == p.xpos && 
+        	    Integer.parseInt(winCondition[1]) == p.ypos) {
+        	    int requiredItem = Integer.parseInt(winCondition[2]);
+        	    boolean hasItem = findByIndex(requiredItem, p) >= 0;
+
+        	    if (hasItem) {
+        	        System.out.println(winCondition[3]); // Win message
+        	        System.exit(0); // End the game
+        	    }
+        	}
+
+        
     }
     
     private static void attack(Player[] npcs, int playerCount, Player p, Item[] items, MapBlock m) 

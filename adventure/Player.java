@@ -11,6 +11,8 @@ public class Player
 	public int defense;
 	public int health;
 	public int strength;
+	public int dexterity;
+	public int intelligence;
 	
 	public int[] items = new int[25];
 	public int itemCount = 0;
