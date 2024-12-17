@@ -4,4 +4,6 @@
 7,3,Wandering Swordsman,A mysterious figure offering a challenge.,1,1,25,100,10,7,9
 8,8,Cave Hermit,A recluse guarding the Manual of Life and Death.,0,1,30,100,9,6,12
 6,6,Rival Clan Scout,A swift warrior from a rival clan.,0,1,12,100,5,8,6
-0,1,Training Dummy,A training dummy for your enjoyment.,0,1,10,10,10,0,0
+0,1,Training Dummy,A training dummy for your enjoyment.,0,0,10,10,10,0,0
+7,4,Song Clan Guard,The main entrance guard of the Song Clan Estate,0,0,100,100,100,100,100
+6,7,Bandit,A lone bandit ambushing any who dare cross the pass,0,1,10,10,15,5,1
